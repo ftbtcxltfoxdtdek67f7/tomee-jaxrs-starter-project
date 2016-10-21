@@ -108,10 +108,36 @@ public class ColorServiceTest extends Assert {
         final Color color = webClient.path("color/object").get(Color.class);
 
         assertNotNull(color);
-        assertEquals("orange", color.getName());
-        assertEquals(0xE7, color.getR());
-        assertEquals(0x71, color.getG());
-        assertEquals(0x00, color.getB());
+        assertEquals("white", color.getName());
+        assertEquals(0xff, color.getR());
+        assertEquals(0xff, color.getG());
+        assertEquals(0xff, color.getB());
+    }
+
+    @Test
+    public void testMapOfBinaryOperations() {
+        class TestVector {
+            String op;
+            String color1;
+            String color2;
+            String emotion;
+            TestVector(String op, String color1, String color2, String emotion) {
+                this.op = op;
+                this.color1 = color1;
+                this.color2 = color2;
+                this.emotion = emotion;
+            }
+        }
+        TestVector[] testVectors = new TestVector[] {
+            new TestVector("add", "0a0a0a", "050505", "willpower"),
+            new TestVector("sub", "0a0a0a", "080808", "rage"),
+            new TestVector("mul", "030303", "010101", "hope"),
+            new TestVector("div", "080808", "020202", "greed")
+        };
+        ColorService colorService = new ColorService();
+        for (TestVector test : testVectors) {
+            assertEquals(test.emotion, colorService.computeEmotion(test.op, test.color1, test.color2));
+        }
     }
 
     /**
@@ -128,5 +154,4 @@ public class ColorServiceTest extends Assert {
         out.flush();
         return new String(out.toByteArray());
     }
-
 }
