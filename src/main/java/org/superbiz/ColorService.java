@@ -41,6 +41,14 @@ public class ColorService {
 
     private String color;
 
+    public static void main(String[] args) {
+        ColorService colorService = new ColorService();
+        colorService.getColor();
+        colorService.setColor(args[1]);
+        colorService.getColorObject();
+        colorService.computeEmotion(args[1], args[2], args[3]);
+    }
+
     public ColorService() {
         this.color = "white";
     }
