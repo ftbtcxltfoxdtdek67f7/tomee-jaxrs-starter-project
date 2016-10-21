@@ -46,7 +46,7 @@ public class ColorService {
         colorService.getColor();
         colorService.setColor(args[1]);
         colorService.getColorObject();
-        colorService.computeEmotion(args[1], args[2], args[3]);
+        colorService.computeEmotion(args[2], args[3], args[4]);
     }
 
     public ColorService() {

@@ -140,6 +140,11 @@ public class ColorServiceTest extends Assert {
         }
     }
 
+    @Test
+    public void testMain() {
+        ColorService.main(new String[] {"", "white", "add", "111111", "222222"});
+    }
+
     /**
      * Reusable utility method
      * Move to a shared class or replace with equivalent
